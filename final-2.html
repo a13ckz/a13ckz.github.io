@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final Portfolio — Aleckz Agojo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red:    #9b1c1c;
+      --red-lt: #c0392b;
+      --black:  #1a1a1a;
+      --grey:   #2e2e2e;
+      --muted:  #6b6b6b;
+      --paper:  #f5f2ee;
+      --white:  #ffffff;
+      --border: #d4cfc8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--paper);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 56px;
+      border-bottom: 2px solid var(--red);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); border-bottom: 1px solid var(--red); padding-bottom: 2px; }
+
+    .page-hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 4rem 2.5rem 3rem;
+      border-bottom: 3px solid var(--red);
+    }
+    .page-hero .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--red-lt);
+      margin-bottom: .8rem;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      font-weight: 400;
+    }
+    .page-hero h1 em { font-style: italic; color: #bbb; }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+    }
+
+    .maintenance-box {
+      max-width: 560px;
+      text-align: center;
+    }
+
+    /* Animated construction graphic */
+    .graphic {
+      margin: 0 auto 2.5rem;
+      width: 180px;
+      height: 180px;
+      position: relative;
+    }
+
+    .graphic svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Blinking cursor animation */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    .gear-outer {
+      transform-origin: 90px 90px;
+      animation: spin-slow 8s linear infinite;
+    }
+    .gear-inner {
+      transform-origin: 90px 90px;
+      animation: spin-slow 5s linear infinite reverse;
+    }
+    .center-dot {
+      animation: pulse 2s ease-in-out infinite;
+      transform-origin: 90px 90px;
+    }
+
+    .maintenance-box h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: .8rem;
+    }
+    .maintenance-box .code-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: #f0e8e8;
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .maintenance-box p {
+      font-size: .92rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      justify-content: center;
+      margin-top: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--black);
+      border-radius: 4px;
+      color: #888;
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .08em;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: blink 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .status-text { color: #ccc; }
+    .cursor {
+      display: inline-block;
+      width: 8px; height: 13px;
+      background: var(--red-lt);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+
+    footer {
+      background: var(--black);
+      color: #666;
+      text-align: center;
+      padding: 1.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      border-top: 2px solid var(--red);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; }
+      .page-hero { padding: 2.5rem 1.2rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">A. Agojo</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="midterm.html">Midterm</a></li>
+    <li><a href="final.html" class="active">Final</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-hero">
+  <p class="tag">COMP 009 · Object-Oriented Programming · BSIT 2-1N</p>
+  <h1>Final <em>Portfolio</em></h1>
+</header>
+
+<main>
+  <div class="maintenance-box">
+
+    <div class="graphic">
+      <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- outer ring / gear teeth -->
+        <g class="gear-outer">
+          <circle cx="90" cy="90" r="60" stroke="#d4cfc8" stroke-width="2"/>
+          <!-- gear teeth -->
+          <rect x="84" y="22" width="12" height="14" rx="2" fill="#d4cfc8"/>
+          <rect x="84" y="144" width="12" height="14" rx="2" fill="#d4cfc8"/>
+          <rect x="22" y="84" width="14" height="12" rx="2" fill="#d4cfc8"/>
+          <rect x="144" y="84" width="14" height="12" rx="2" fill="#d4cfc8"/>
+          <rect x="40" y="40" width="12" height="12" rx="2" fill="#d4cfc8" transform="rotate(45 46 46)"/>
+          <rect x="128" y="40" width="12" height="12" rx="2" fill="#d4cfc8" transform="rotate(45 134 46)"/>
+          <rect x="40" y="128" width="12" height="12" rx="2" fill="#d4cfc8" transform="rotate(45 46 134)"/>
+          <rect x="128" y="128" width="12" height="12" rx="2" fill="#d4cfc8" transform="rotate(45 134 134)"/>
+        </g>
+        <!-- inner ring -->
+        <g class="gear-inner">
+          <circle cx="90" cy="90" r="38" stroke="#9b1c1c" stroke-width="2" stroke-dasharray="6 4"/>
+        </g>
+        <!-- face -->
+        <circle cx="90" cy="90" r="26" fill="#1a1a1a" class="center-dot"/>
+        <!-- emoji face on dark circle -->
+        <!-- eyes -->
+        <circle cx="83" cy="86" r="2.5" fill="#f5f2ee"/>
+        <circle cx="97" cy="86" r="2.5" fill="#f5f2ee"/>
+        <!-- zzz sleep -->
+        <text x="72" y="100" font-family="serif" font-size="9" fill="#9b1c1c" font-weight="bold">z z z</text>
+      </svg>
+    </div>
+
+    <div class="code-tag">// STATUS: UNDER CONSTRUCTION</div>
+    <h2>Nothing to See Here — <em>Yet.</em></h2>
+    <p>
+      The Final Portfolio section is currently empty because the final term hasn't started yet. This page will be populated with quizzes, seatwork, activities, the final exam, and a project once the final period of the semester is underway.
+    </p>
+    <p>
+      Think of this page as a blank canvas — the semester continues, and so will the work. Check back once the final term kicks off.
+    </p>
+
+    <div class="status-bar">
+      <div class="status-dot"></div>
+      <span class="status-text">awaiting_final_term.java<span class="cursor"></span></span>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  © 2025 Aleckz Danielle V. Agojo &nbsp;·&nbsp; PUP Sta. Mesa &nbsp;·&nbsp; BSIT 2-1N
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Midterm — Aleckz Agojo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red:    #9b1c1c;
+      --red-lt: #c0392b;
+      --black:  #1a1a1a;
+      --grey:   #2e2e2e;
+      --muted:  #6b6b6b;
+      --paper:  #f5f2ee;
+      --white:  #ffffff;
+      --border: #d4cfc8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--paper);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 56px;
+      border-bottom: 2px solid var(--red);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: .02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { border-bottom: 1px solid var(--red); padding-bottom: 2px; }
+
+    /* ── HERO ── */
+    .page-hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 4rem 2.5rem 3rem;
+      border-bottom: 3px solid var(--red);
+    }
+    .page-hero .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--red-lt);
+      margin-bottom: .8rem;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      font-weight: 400;
+    }
+    .page-hero h1 em { font-style: italic; color: #bbb; }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-head {
+      display: flex; align-items: baseline; gap: 1.2rem;
+      padding: 3rem 0 1.2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .section-head h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+    }
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem;
+      color: var(--red);
+      letter-spacing: .1em;
+      background: #f0e8e8;
+      padding: .15rem .5rem;
+      border-radius: 2px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      padding: 1.8rem 2rem;
+      margin-bottom: 1.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .card-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+      display: flex; flex-wrap: wrap; gap: .6rem 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .card-meta span { display: flex; align-items: center; gap: .3rem; }
+    .card-meta .score {
+      color: var(--red);
+      font-weight: 500;
+    }
+    .card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: .6rem;
+    }
+    .card p {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--grey);
+      margin-bottom: .8rem;
+    }
+
+    /* ── DOWNLOAD BUTTON ── */
+    .dl-group { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .45rem 1rem;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: .73rem;
+      letter-spacing: .06em;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background .2s, transform .15s;
+      border: none; cursor: pointer;
+    }
+    .dl-btn:hover {
+      background: var(--red);
+      transform: translateY(-1px);
+    }
+    .dl-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── REFLECTION BLOCK ── */
+    .reflection {
+      background: #1a1a1a;
+      color: #e8e2da;
+      padding: 1.8rem 2rem;
+      margin-top: 2rem;
+      border-left: 4px solid var(--red);
+      border-radius: 0 4px 4px 0;
+    }
+    .reflection .label {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--red-lt);
+      margin-bottom: .9rem;
+    }
+    .reflection p {
+      font-size: .9rem;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    /* ── PROJECT HIGHLIGHT ── */
+    .project-card {
+      background: var(--black);
+      color: var(--white);
+      padding: 2.2rem 2.2rem;
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 6px; height: 100%;
+      background: var(--red);
+    }
+    .project-card .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--red-lt);
+      margin-bottom: .8rem;
+    }
+    .project-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: .8rem;
+    }
+    .project-card p {
+      font-size: .88rem;
+      line-height: 1.75;
+      color: #bbb;
+      margin-bottom: .7rem;
+    }
+
+    /* ── EXAM SEALED ── */
+    .exam-sealed {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      padding: 2rem;
+      text-align: center;
+    }
+    .exam-sealed .icon { font-size: 2.2rem; margin-bottom: .8rem; }
+    .exam-sealed h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: .5rem;
+    }
+    .exam-sealed p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── DIVIDER ── */
+    hr.thin { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: #666;
+      text-align: center;
+      padding: 1.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      border-top: 2px solid var(--red);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; }
+      .page-hero { padding: 2.5rem 1.2rem 2rem; }
+      main { padding: 0 1.2rem 4rem; }
+      .card { padding: 1.2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">A. Agojo</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="midterm.html" class="active">Midterm</a></li>
+    <li><a href="final.html">Final</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-hero">
+  <p class="tag">COMP 009 · Object-Oriented Programming · BSIT 2-1N</p>
+  <h1>Midterm <em>Portfolio</em></h1>
+</header>
+
+<main>
+
+  <!-- ══════════════════════════════
+       ABOUT ME
+  ══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-num">00</span>
+    <h2>About Me</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Feb 10, 2026</span>
+      <span>🔒 Closed: Feb 18, 2026 · 8:59 AM</span>
+      <span class="score">⭐ Score: 30 / 30</span>
+    </div>
+    <h3>About Me Activity</h3>
+    <p>
+      An introductory activity submitted at the start of the term, designed to let the instructor learn more about each student. The submission included a personal photo, full name, three words that describe oneself, a short message to the teacher, and three things the student wishes to learn during the school year.
+    </p>
+    <p>
+      For this activity, the three words chosen were <strong>Mirror, River,</strong> and <strong>Camera</strong> — each reflecting a personal interest and approach to the world. The message to Sir was simple but sincere: <em>"I hope it'll be a fun learning experience."</em> The three learning goals listed were: a path I can properly thread, filming, and learning more about myself.
+    </p>
+    <div class="dl-group">
+      <a class="dl-btn" href="About_me__1763915_.png" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download About Me (PNG)
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       MIDTERM ASSIGNMENT
+  ══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <h2>Midterm Assignment</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Feb 10, 2026</span>
+      <span>🔒 Closed: Feb 18, 2026 · 8:59 AM</span>
+      <span class="score">⭐ Score: 30 / 30</span>
+    </div>
+    <h3>Midterm Assignment #1 — Introduction to Java</h3>
+    <p>
+      A written assignment answered on yellow pad paper and submitted as a file upload. The task required reading each question carefully and providing thorough, handwritten answers covering fundamental Java concepts. The questions covered:
+    </p>
+    <p style="padding-left:1rem; border-left: 2px solid var(--border); color: var(--muted); font-size:.85rem; line-height:1.9;">
+      1. What is Java? Key features and advantages.<br>
+      2. Platform independence — how does Java achieve it?<br>
+      3. Main components of a Java program and their roles.<br>
+      4. Differences between JDK, JRE, and JVM.<br>
+      5. Interpreted vs. compiled languages — is Java interpreted or compiled?
+    </p>
+    <div class="dl-group">
+      <a class="dl-btn" href="IMG_20260217_161545_743.jpg" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Written Answer (JPG)
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       SEATWORK
+  ══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <h2>Seatwork</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Feb 27, 2026 · 8:30 PM</span>
+      <span>🔒 Closed: Feb 27, 2026 · 9:30 PM</span>
+      <span>⏱ Duration: 1 hour</span>
+      <span class="score">⭐ Score: 28 / 30</span>
+    </div>
+    <h3>Seatwork #1 — Operators</h3>
+    <p>
+      A timed in-class seatwork activity focused on Java operators. Submitted on paper within a strict one-hour window. The activity tested understanding of various Java operator types including arithmetic, relational, logical, bitwise, ternary, and assignment operators — requiring both theoretical knowledge and practical application.
+    </p>
+  </div>
+
+  <div class="reflection">
+    <div class="label">↳ Reflection — Quizzes, Activities & Seatwork</div>
+    <p>
+      When Sir Bedis first introduced the topics — operators, variables, control flow, and methods — it honestly felt like a lot to absorb all at once. The seatwork especially had this way of throwing everything at you in a compressed time window, which made it stressful at first. There were moments during the operator exercises where I second-guessed myself on things like bitwise operations or the exact behavior of pre- and post-increment in complex expressions. The ternary operator was surprisingly tricky once nested logic got involved.
+    </p>
+    <p style="margin-top:.8rem;">
+      But once Sir Bedis walked through the concepts in class — breaking down each operator group, showing live examples, and explaining the <em>why</em> behind each behavior — everything started clicking into place. His explanations were clear and direct, and he had a way of making abstract syntax feel practical and grounded. The activities stopped feeling like obstacles and started feeling like checkpoints I could actually pass. By the time we got to the midterm activities, there was a real sense of progress — the concepts that once felt foreign had become familiar tools.
+    </p>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       MIDTERM ACTIVITIES
+  ══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <h2>Midterm Activities</h2>
+  </div>
+
+  <!-- Activity 1 -->
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Feb 27, 2026</span>
+      <span>🔒 Closed: Mar 3, 2026 · 8:59 AM</span>
+    </div>
+    <h3>Midterm Activity #1 — Variables</h3>
+    <p>
+      A code analysis activity exploring Java variables — how they are declared, typed, and stored in memory. The activity covered instance variables (fields), reference variables, local variables, and method parameters, examining exactly where each type lives (heap vs. stack) and how object references work across different assignments.
+    </p>
+    <div class="dl-group">
+      <a class="dl-btn" href="BSIT2-1N_Agojo_AleckzDanielle_CodeAnalysisActivity_1.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Activity 1 (PDF)
+      </a>
+    </div>
+  </div>
+
+  <!-- Activity 2 -->
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Feb 27, 2026</span>
+      <span>🔒 Closed: Mar 3, 2026 · 8:59 AM</span>
+    </div>
+    <h3>Midterm Activity #2 — Operators</h3>
+    <p>
+      A hands-on coding activity covering Java operators in depth. Completed in three parts: Part 1 included separate programs for Bitwise Operators, Ternary Operators, and Assignment Operators — each demonstrating correct outputs through the Programiz online compiler. Part 2 integrated multiple operator types into a single program, combining arithmetic, shift, increment/decrement, modulo, logical, and negation operators with verified outputs.
+    </p>
+    <div class="dl-group">
+      <a class="dl-btn" href="BSIT2-1N_Agojo_AleckzDanielle_OperatorsActivity_2.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Activity 2 (PDF)
+      </a>
+    </div>
+  </div>
+
+  <!-- Activity 3 -->
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Mar 24, 2026</span>
+      <span>🔒 Closed: Mar 27, 2026 · 9:59 AM</span>
+    </div>
+    <h3>Midterm Activity #3 — ATM with Transaction Counter</h3>
+    <p>
+      A Java programming activity building a Secure ATM System featuring PIN authentication with a maximum of 3 attempts, followed by a full banking menu. The program supports balance checking, deposits, and withdrawals (capped at ₱2,000 per transaction), while tracking the total number of transactions performed during the session. Security logic, input validation, and loop control structures were all implemented from scratch.
+    </p>
+    <div class="dl-group">
+      <a class="dl-btn" href="BSIT2-1N_Agojo_AleckzDanielle_MidtermActvity_3.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Activity 3 PDF
+      </a>
+      <a class="dl-btn" href="SecureATMSystemAgojo.java" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Java Source
+      </a>
+    </div>
+  </div>
+
+  <!-- Activity 4 -->
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Mar 24, 2026</span>
+      <span>🔒 Closed: Mar 27, 2026 · 9:59 AM</span>
+    </div>
+    <h3>Midterm Activity #4 — Student Payment System with Validation Counter</h3>
+    <p>
+      A Java program implementing a Student Payment System that accepts a student's name, ID, and total tuition fee upon startup. The system provides a payment menu with options to pay tuition, check remaining balance, apply a scholarship discount (20% for scholars, none for regular students), and exit. A transaction counter tracks every meaningful interaction, and a final summary is printed on exit. Input validation ensures no overpayment or invalid entries are accepted.
+    </p>
+    <div class="dl-group">
+      <a class="dl-btn" href="BSIT2-1N_Agojo_AleckzDanielle_MidtermActvity_4.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Activity 4 PDF
+      </a>
+      <a class="dl-btn" href="StudentPaymentSystemAgojo.java" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Java Source
+      </a>
+    </div>
+  </div>
+
+  <!-- Activity 5 -->
+  <div class="card">
+    <div class="card-meta">
+      <span>📅 Released: Apr 11, 2026 · 12:45 AM</span>
+      <span>🔒 Closed: Apr 12, 2026 · 1:00 AM</span>
+    </div>
+    <h3>Midterm Activity #5 — Personal Expense Tracker</h3>
+    <p>
+      A Java program that serves as a personal budget manager. The user enters their name, budget, and four categories of expenses (food, transportation, other, and entertainment). The program calculates the total, compares it against the budget, and outputs a formatted expense summary — including remaining budget and a status message (exceeded, exact, or within budget). The program is structured with static helper methods: <code>displayTitle()</code>, <code>calculateTotal()</code>, <code>checkBudget()</code>, and <code>displayResults()</code>, demonstrating clean method decomposition.
+    </p>
+    <div class="dl-group">
+      <a class="dl-btn" href="ExpenseTrackerAgojo.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Activity 5 PDF
+      </a>
+      <a class="dl-btn" href="ExpenseTrackerAgojo.java" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Java Source
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       MIDTERM EXAM
+  ══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <h2>Midterm Exam</h2>
+  </div>
+
+  <div class="exam-sealed">
+    <div class="icon">📋</div>
+    <h3>Examination Results — Pending</h3>
+    <p>
+      The midterm examination has been administered. However, the official scores and results have not yet been released by the instructor. This section will be updated once grading has been completed and scores are made available.
+    </p>
+  </div>
+
+  <div class="reflection" style="margin-top: 1.5rem;">
+    <div class="label">↳ Reflection — Midterm Exam</div>
+    <p>
+      Looking back on the midterm exam, I have to be honest with myself: I wasn't fully prepared, and that showed in how I approached it. The period leading up to the exam was a particularly demanding stretch — multiple subjects all converging at the same time, each with their own requirements and deadlines. Between juggling outputs, readings, and reviews for other courses, Object-Oriented Programming unfortunately ended up getting less of my attention than it deserved.
+    </p>
+    <p style="margin-top:.8rem;">
+      There were concepts I knew I understood but couldn't articulate under pressure, and there were parts of the exam where I felt the gaps from not having reviewed thoroughly enough. It wasn't a lack of interest or effort across the board — it was the very real constraint of limited time and energy spread too thin across too many commitments at once.
+    </p>
+    <p style="margin-top:.8rem;">
+      That said, I don't see this as a moment to make excuses — I see it as a lesson in prioritization and time management. OOP is a subject that rewards consistent practice, and I know now that cramming or last-minute reviewing isn't enough for something this layered. For the finals, I intend to be more deliberate: reviewing early, practicing code regularly, and not letting other subjects crowd this one out. This exam was a wake-up call, and I'm taking it seriously.
+    </p>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       MIDTERM PROJECT
+  ══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <h2>Midterm Project</h2>
+  </div>
+
+  <div class="project-card">
+    <div class="tag">★ MAJOR OUTPUT · 100 PTS · DUE SUNDAY BY 9:59 AM</div>
+    <h3>E-Portfolio — Object-Oriented Programming</h3>
+    <p>
+      This very website is the Midterm Project. Submitted on April 26, 2026 at 7:10 AM, the project required building a complete, structured E-Portfolio documenting the entire midterm journey in COMP 009 — Object-Oriented Programming.
+    </p>
+    <p>
+      The portfolio serves as both an academic record and a personal reflection space. It compiles every graded output from the term: the About Me activity, the midterm assignment, the seatwork, all five midterm activities, the midterm exam, and this project itself. Each entry is organized with its release and submission dates, scores where available, downloadable files, and written reflections on the learning process.
+    </p>
+    <p>
+      Beyond just collecting files, the portfolio is meant to demonstrate growth — showing not only what was submitted, but how understanding developed over the course of the term. From writing answers about basic Java concepts on yellow pad paper, to building multi-function programs like an ATM system and a payment platform with discount logic, the progression is visible in the work itself.
+    </p>
+    <p>
+      The site was built from scratch using HTML, CSS, and vanilla JavaScript — hosted via GitHub Pages at <strong>a13ckz.github.io</strong>. The design intentionally reflects a personal, editorial aesthetic: structured and professional, but grounded in personality. It was designed to be a living document — something that continues beyond the midterm into the final term and beyond.
+    </p>
+    <div class="dl-group" style="margin-top:1.2rem;">
+      <a class="dl-btn" href="https://a13ckz.github.io" target="_blank" style="background:#c0392b;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Live Portfolio
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 Aleckz Danielle V. Agojo &nbsp;·&nbsp; PUP Sta. Mesa &nbsp;·&nbsp; BSIT 2-1N
+</footer>
+
+</body>
+</html>

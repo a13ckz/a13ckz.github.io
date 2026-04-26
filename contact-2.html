@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Aleckz Agojo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red:    #9b1c1c;
+      --red-lt: #c0392b;
+      --black:  #1a1a1a;
+      --grey:   #2e2e2e;
+      --muted:  #6b6b6b;
+      --paper:  #f5f2ee;
+      --white:  #ffffff;
+      --border: #d4cfc8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--paper);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+      border-bottom: 2px solid var(--red);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem; color: var(--white); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #aaa; text-decoration: none;
+      font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); border-bottom: 1px solid var(--red); padding-bottom: 2px; }
+
+    .page-hero {
+      background: var(--black); color: var(--white);
+      padding: 4rem 2.5rem 3rem; border-bottom: 3px solid var(--red);
+    }
+    .page-hero .tag {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--red-lt); margin-bottom: .8rem;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; font-weight: 400;
+    }
+    .page-hero h1 em { font-style: italic; color: #bbb; }
+
+    main {
+      flex: 1;
+      max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem;
+      width: 100%;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 560px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      padding: 1.4rem 1.6rem;
+      border-radius: 0 0 4px 4px;
+    }
+    .contact-card .label {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: .5rem;
+    }
+    .contact-card .value {
+      font-size: .95rem; font-weight: 500; line-height: 1.5; color: var(--black);
+    }
+    .contact-card .value a {
+      color: var(--red); text-decoration: none; transition: opacity .2s;
+    }
+    .contact-card .value a:hover { opacity: .7; }
+
+    /* Instagram special card */
+    .ig-card {
+      background: var(--black);
+      border: none; border-top: 3px solid var(--red);
+      padding: 1.8rem 1.8rem;
+      border-radius: 0 0 4px 4px;
+      grid-column: 1 / -1;
+    }
+    .ig-card .label {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red-lt); margin-bottom: 1rem;
+    }
+    .ig-links { display: flex; flex-direction: column; gap: .75rem; }
+    .ig-link {
+      display: flex; align-items: center; gap: .9rem;
+      text-decoration: none;
+      padding: .7rem 1rem;
+      background: #2a2a2a;
+      border-radius: 4px;
+      border: 1px solid #333;
+      transition: background .2s, border-color .2s;
+    }
+    .ig-link:hover { background: #333; border-color: var(--red); }
+    .ig-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ig-icon svg { width: 20px; height: 20px; }
+    .ig-text-block { display: flex; flex-direction: column; gap: .1rem; }
+    .ig-handle {
+      font-family: 'DM Mono', monospace; font-size: .82rem;
+      color: var(--white); letter-spacing: .03em;
+    }
+    .ig-sub {
+      font-size: .75rem; color: #888;
+    }
+
+    .about-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      padding: 1.6rem 1.8rem;
+      margin-top: 1.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .about-section h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem; font-weight: 400; margin-bottom: .6rem;
+    }
+    .about-section p {
+      font-size: .88rem; line-height: 1.75; color: var(--grey);
+    }
+
+    footer {
+      background: var(--black); color: #666; text-align: center;
+      padding: 1.6rem;
+      font-family: 'DM Mono', monospace; font-size: .72rem; letter-spacing: .08em;
+      border-top: 2px solid var(--red);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; }
+      .page-hero { padding: 2.5rem 1.2rem 2rem; }
+      main { padding: 2.5rem 1.2rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">A. Agojo</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="midterm.html">Midterm</a></li>
+    <li><a href="final.html">Final</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-hero">
+  <p class="tag">Get in Touch</p>
+  <h1>Contact <em>&amp; Links</em></h1>
+</header>
+
+<main>
+
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <div class="label">Full Name</div>
+      <div class="value">Aleckz Danielle V. Agojo</div>
+    </div>
+
+    <div class="contact-card">
+      <div class="label">School</div>
+      <div class="value">Polytechnic University of the Philippines<br>Sta. Mesa Campus</div>
+    </div>
+
+    <div class="contact-card">
+      <div class="label">Course &amp; Section</div>
+      <div class="value">BSIT 2-1N<br>Object-Oriented Programming</div>
+    </div>
+
+    <div class="contact-card">
+      <div class="label">GitHub Pages</div>
+      <div class="value"><a href="https://a13ckz.github.io" target="_blank">a13ckz.github.io ↗</a></div>
+    </div>
+
+    <!-- Instagram -->
+    <div class="ig-card">
+      <div class="label">📸 Instagram</div>
+      <div class="ig-links">
+
+        <a class="ig-link" href="https://www.instagram.com/yugtongnaisulat/" target="_blank" rel="noopener">
+          <div class="ig-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
+            </svg>
+          </div>
+          <div class="ig-text-block">
+            <span class="ig-handle">@yugtongnaisulat</span>
+            <span class="ig-sub">Personal account</span>
+          </div>
+        </a>
+
+        <a class="ig-link" href="https://www.instagram.com/thealeckzofmyeye/" target="_blank" rel="noopener">
+          <div class="ig-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
+            </svg>
+          </div>
+          <div class="ig-text-block">
+            <span class="ig-handle">@thealeckzofmyeye</span>
+            <span class="ig-sub">Secondary account</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="about-section">
+    <h3>About this Portfolio</h3>
+    <p>
+      This e-portfolio was created as the Midterm Project for Object-Oriented Programming at PUP Sta. Mesa. It documents the complete midterm journey — from introductory activities and handwritten assignments, through coding exercises in operators, variables, ATM systems, and payment platforms, all the way to this project itself. Built with HTML, CSS, and JavaScript, and hosted on GitHub Pages.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 Aleckz Danielle V. Agojo &nbsp;·&nbsp; PUP Sta. Mesa &nbsp;·&nbsp; BSIT 2-1N
+</footer>
+
+</body>
+</html>
