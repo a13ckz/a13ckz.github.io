@@ -44,3 +44,21 @@ h1, h2 {
   color: orange;
 }
 
+nav {
+  text-align: center;
+  margin-top: 10px;
+}
+
+nav a {
+  color: orange;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: white;
+  text-shadow: 0 0 10px orange, 0 0 20px orange;
+  transform: scale(1.1);
+}
