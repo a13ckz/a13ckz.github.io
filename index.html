@@ -1,59 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aleckz Agojo — OOP E-Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
 
-<div class="main-container">
+  <nav>
+    <a href="index.html" class="nav-logo">A. Agojo</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="midterm.html">Midterm</a></li>
+      <li><a href="final.html">Final</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-  <!-- LEFT SIDE -->
-  <div class="left">
+  <main class="page-wrapper">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">E-Portfolio — Object-Oriented Programming</p>
+        <h1 class="hero-name">
+          Aleckz Danielle<br /><span>V. Agojo</span>
+        </h1>
+        <div class="hero-meta">
+          <span>Polytechnic University of the Philippines – Sta. Mesa Campus</span>
+          <span>BSIT 2-1N &nbsp;·&nbsp; Object-Oriented Programming</span>
+        </div>
+        <p class="hero-intro">
+          This e-portfolio presents my Midterm Project in Object-Oriented Programming.
+          It includes quizzes, activities, and exams that demonstrate my understanding
+          of OOP concepts.
+        </p>
+      </div>
+    </section>
 
-    <p class="tag">— OBJECT-ORIENTED PROGRAMMING PORTFOLIO</p>
+    <div class="divider"></div>
 
-    <h1>
-      Aleckz <span>Danielle</span><br>
-      V. Agojo
-    </h1>
+    <section class="section">
+      <p class="section-label">Overview</p>
+      <h2 class="section-title">What's Inside</h2>
+      <div class="card-grid">
+        <a href="midterm.html" style="text-decoration:none;">
+          <div class="card fade-up">
+            <p class="card-tag">Midterm</p>
+            <h3>Midterm Portfolio</h3>
+            <p>Quizzes, seatwork, activities (ATM, decision structures, methods), and the midterm exam with reflection.</p>
+          </div>
+        </a>
+        <a href="final.html" style="text-decoration:none;">
+          <div class="card fade-up">
+            <p class="card-tag">Final</p>
+            <h3>Final Portfolio</h3>
+            <p>Final-term quizzes, seatwork, activities, and exam with answers and learnings.</p>
+          </div>
+        </a>
+        <a href="contact.html" style="text-decoration:none;">
+          <div class="card fade-up">
+            <p class="card-tag">Contact</p>
+            <h3>Get in Touch</h3>
+            <p>School details and contact information for Aleckz Danielle V. Agojo.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
 
-    <p class="sub">
-      BSIT · Section 2-4 · AY 2025–2026
-    </p>
-
-    <p class="desc">
-      This e-portfolio features my Midterm Project in Object-Oriented Programming built with HTML, CSS, & JavaScript. It highlights my activities and assignments, demonstrating my understanding of Java OOP concepts.
-    </p>
-
-    <div class="buttons">
-      <a href="midterm.html" class="btn primary">View Midterm</a>
-      <a href="contact.html" class="btn outline">Contact Me</a>
-    </div>
-
-  </div>
-
-  <!-- RIGHT SIDE -->
-  <div class="right">
-
-    <div class="card">
-      <p class="label">COURSE</p>
-      <p>Object-Oriented Programming (Java)</p>
-    </div>
-
-    <div class="card">
-      <p class="label">SCHOOL</p>
-      <p>Polytechnic University of the Philippines</p>
-    </div>
-
-    <div class="card">
-      <p class="label">INSTRUCTOR</p>
-      <p>Severino M. Bedis Jr.</p>
-    </div>
-
-    <div class="grid">
-      <div class="mini-card">F2F Quiz & Activities</div>
-      <div class="mini-card">About Me & Assignment</div>
-      <div class="mini-card">Midterm Activities</div>
-      <div class="mini-card">Midterm Exam</div>
-    </div>
-
-  </div>
-
-</div>
+  <footer>
+    <p>&copy; 2025 <span>Aleckz Danielle V. Agojo</span></p>
+    <p>PUP Sta. Mesa &nbsp;·&nbsp; BSIT 2-1N</p>
+  </footer>
 
 </body>
+</html>
