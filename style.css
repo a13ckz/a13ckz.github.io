@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: white;
+}
+
+header {
+  background: linear-gradient(to right, orange, black);
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  background: #111;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: orange;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.container {
+  padding: 30px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 5px solid orange;
+  border-radius: 10px;
+}
+
+h1, h2 {
+  color: orange;
+}
